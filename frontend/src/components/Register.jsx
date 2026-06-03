@@ -37,161 +37,209 @@ const Register = () => {
     }
   };
 
-  return (
-    <div>
-      <section
-        className="vh-80
-        
-        bg-image"
-        style={{
-          backgroundImage: `url(https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp)`,
-        }}
-      >
-        <div className="mask d-flex align-items-center h-100 gradient-custom-3">
-          <div className="container h-100">
-            <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div className="card my-5" style={{ borderRadius: "15px" }}>
-                  <div className="card-body px-5 bg-info bg-opacity-10">
-                    <h2 className="text-uppercase text-center mb-3">
-                      Create an account
-                    </h2>
+ return (
+  <div
+    className="min-vh-100 d-flex align-items-center justify-content-center py-5"
+    style={{
+      background:
+        "linear-gradient(135deg,#0f172a,#1e293b,#3b82f6)",
+    }}
+  >
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-10 col-md-8 col-lg-5">
 
-                    <form>
-                      <div data-mdb-input-init className="form-outline mb-2">
-                        <input
-                          type="text"
-                          id="form3Example1cg"
-                          placeholder="FullName"
-                          className="form-control form-control-lg shadow border-2"
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                        />
-                        <label
-                          className="form-label"
-                          htmlFor="form3Example1cg"
-                        >
-                          FullName
-                        </label>
-                      </div>
+          <div
+            className="card border-0 shadow-lg rounded-4 overflow-hidden"
+            style={{
+              background: "rgba(255,255,255,0.95)",
+              backdropFilter: "blur(15px)",
+            }}
+          >
+            <div className="card-body p-5">
 
-                      <div data-mdb-input-init className="form-outline mb-2">
-                        <input
-                          type="text"
-                          placeholder="Mobile Number"
-                          id="form3Example3cg"
-                          className="form-control form-control-lg shadow border-2"
-                          value={mobile}
-                          onChange={(e) => setMobile(e.target.value)}
-                        />
-                        <label
-                          className="form-label"
-                          htmlFor="form3Example3cg"
-                        >
-                          Phone Number
-                        </label>
-                      </div>
+              {/* Logo */}
+              <div className="text-center mb-4">
+                <img
+                  src={require("../static/eCommerce-logo.jpg")}
+                  alt="logo"
+                  className="rounded-circle shadow border mb-3"
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    objectFit: "cover",
+                  }}
+                />
 
-                      <div
-                        data-mdb-input-init
-                        className="form-outline mb-2  position-relative"
-                      >
-                        {passView ? (
-                          <input
-                            type="text"
-                            id="form3Example4cg"
-                            placeholder="Password"
-                            className="form-control form-control-lg shadow border-2"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
-                        ) : (
-                          <input
-                            type="password"
-                            id="form3Example4cg"
-                            placeholder="Password"
-                            className="form-control form-control-lg shadow border-2"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
-                        )}
-                        <p
-                          className=" position-absolute pointer "
-                          style={{ left: "90%", bottom: "35%" }}
-                          onClick={() => setPassView(!passView)}
-                        >
-                          {passView ? (
-                            <i className="fa-regular fa-eye"></i>
-                          ) : (
-                            <i className="fa-regular fa-eye-slash"></i>
-                          )}
-                        </p>
-                        <label
-                          className="form-label"
-                          htmlFor="form3Example4cg"
-                        >
-                          Password
-                        </label>
-                      </div>
+                <h2 className="fw-bold mb-2">
+                  Create Account
+                </h2>
 
-                      <div data-mdb-input-init className="form-outline mb-2">
-                        {passView ? (
-                          <input
-                            type="text"
-                            id="form3Example4cdg"
-                            placeholder="Repeat Password"
-                            className="form-control form-control-lg shadow border-2"
-                            value={password2}
-                            onChange={(e) => setPassword2(e.target.value)}
-                          />
-                        ) : (
-                          <input
-                            type="password"
-                            id="form3Example4cdg"
-                            placeholder="Repeat Password"
-                            className="form-control form-control-lg shadow border-2"
-                            value={password2}
-                            onChange={(e) => setPassword2(e.target.value)}
-                          />
-                        )}
-                        <label
-                          className="form-label"
-                          htmlFor="form3Example4cdg"
-                        >
-                          Repeat your password
-                        </label>
-                      </div>
+                <p className="text-muted">
+                  Join MyShop and start shopping today
+                </p>
+              </div>
 
-                      <div className=" text-danger mb-2 ms-3">{error}</div>
+              <form>
 
-                      <div className="d-flex justify-content-center">
-                        <button
-                          type="submit"
-                          data-mdb-button-init
-                          data-mdb-ripple-init
-                          className="btn fw-bold shadow btn-success btn-block btn-lg gradient-custom-4 text-body d-flex align-items-center gap-1"
-                          onClick={(e) => submitHandler(e)}
-                        >
-                          Register
-                        </button>
-                      </div>
+                {/* Full Name */}
+                <div className="mb-3">
+                  <label className="form-label fw-semibold">
+                    Full Name
+                  </label>
 
-                      <p className="text-center text-muted mt-3 mb-0">
-                        Have already an account?{" "}
-                        <Link to="/login" className="fw-bold fs-5 text-body">
-                          <u>Login here</u>
-                        </Link>
-                      </p>
-                    </form>
+                  <div className="input-group">
+                    <span className="input-group-text">
+                      <i className="fa-solid fa-user"></i>
+                    </span>
+
+                    <input
+                      type="text"
+                      placeholder="Enter your full name"
+                      className="form-control form-control-lg shadow-sm"
+                      value={fullName}
+                      onChange={(e) =>
+                        setFullName(e.target.value)
+                      }
+                    />
                   </div>
                 </div>
-              </div>
+
+                {/* Mobile */}
+                <div className="mb-3">
+                  <label className="form-label fw-semibold">
+                    Mobile Number
+                  </label>
+
+                  <div className="input-group">
+                    <span className="input-group-text">
+                      <i className="fa-solid fa-phone"></i>
+                    </span>
+
+                    <input
+                      type="text"
+                      placeholder="Enter mobile number"
+                      className="form-control form-control-lg shadow-sm"
+                      value={mobile}
+                      onChange={(e) =>
+                        setMobile(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Password */}
+                <div className="mb-3">
+                  <label className="form-label fw-semibold">
+                    Password
+                  </label>
+
+                  <div className="input-group">
+                    <span className="input-group-text">
+                      <i className="fa-solid fa-lock"></i>
+                    </span>
+
+                    <input
+                      type={passView ? "text" : "password"}
+                      placeholder="Enter password"
+                      className="form-control form-control-lg shadow-sm"
+                      value={password}
+                      onChange={(e) =>
+                        setPassword(e.target.value)
+                      }
+                    />
+
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary"
+                      onClick={() =>
+                        setPassView(!passView)
+                      }
+                    >
+                      <i
+                        className={
+                          passView
+                            ? "fa-regular fa-eye"
+                            : "fa-regular fa-eye-slash"
+                        }
+                      ></i>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Confirm Password */}
+                <div className="mb-3">
+                  <label className="form-label fw-semibold">
+                    Confirm Password
+                  </label>
+
+                  <div className="input-group">
+                    <span className="input-group-text">
+                      <i className="fa-solid fa-shield-halved"></i>
+                    </span>
+
+                    <input
+                      type={passView ? "text" : "password"}
+                      placeholder="Repeat password"
+                      className="form-control form-control-lg shadow-sm"
+                      value={password2}
+                      onChange={(e) =>
+                        setPassword2(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Error */}
+                {error && (
+                  <div className="alert alert-danger py-2">
+                    <i className="fa-solid fa-circle-exclamation me-2"></i>
+                    {error}
+                  </div>
+                )}
+
+                {/* Register Button */}
+                <button
+                  type="submit"
+                  className="btn btn-lg w-100 rounded-3 fw-bold text-white shadow"
+                  style={{
+                    background:
+                      "linear-gradient(135deg,#0d6efd,#6610f2)",
+                    border: "none",
+                  }}
+                  onClick={(e) => submitHandler(e)}
+                >
+                  <i className="fa-solid fa-user-plus me-2"></i>
+                  Create Account
+                </button>
+
+                {/* Login Link */}
+                <div className="text-center mt-4">
+                  <span className="text-muted">
+                    Already have an account?
+                  </span>
+
+                  <Link
+                    to="/login"
+                    className="text-primary fw-bold ms-2 text-decoration-none"
+                  >
+                    Login Here
+                  </Link>
+                </div>
+
+              </form>
             </div>
           </div>
+
+          <div className="text-center mt-3 text-white">
+            © {new Date().getFullYear()} MyShop
+          </div>
+
         </div>
-      </section>
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Register;

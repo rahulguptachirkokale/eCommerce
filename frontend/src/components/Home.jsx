@@ -66,23 +66,45 @@ const Home = () => {
     GetProduct();
   }, []);
   return (
-    <div className=" container">
+  <div className="container-fluid py-4 bg-light min-vh-100">
+    
+    {/* Categories Section */}
+    <div className="mb-4">
       <CategoriesPages />
+    </div>
+
+    {/* Filter Section */}
+    <div className="bg-white rounded-4 shadow-sm p-3 mb-4">
       <FilterMenu FilterHandler={FilterHandler} />
-      <div className=" row ">
-        {orderStatus && (
-          <div
-            className="alert alert-success col-11 text-center fw-bold mx-auto"
-            role="alert"
-          >
-            Order Success!
-          </div>
-        )}
-       <div id="loader" className=" w-100 fw-bold p-3" ref={loaderRef}>
-        <div className="loader m-auto"></div>
+    </div>
+
+    {/* Success Alert */}
+    {orderStatus && (
+      <div
+        className="alert alert-success text-center fw-bold shadow-sm border-0 rounded-3 mb-4"
+        role="alert"
+      >
+        ✅ Order Placed Successfully!
       </div>
-        {tempItems.map((item, idx) => (
-          <div key={idx} className=" col-6 col-md-4 col-lg-3 col-xl-2">
+    )}
+
+    {/* Loader */}
+    <div
+      id="loader"
+      className="w-100 py-5 text-center"
+      ref={loaderRef}
+    >
+      <div className="loader mx-auto"></div>
+    </div>
+
+    {/* Product Grid */}
+    <div className="row g-4">
+      {tempItems.map((item, idx) => (
+        <div
+          key={idx}
+          className="col-6 col-md-4 col-lg-3 col-xl-2"
+        >
+          <div className="h-100">
             <HomeCart
               category={item.category}
               title={item.title}
@@ -93,10 +115,11 @@ const Home = () => {
               order={order}
             />
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 };
 
 export default Home;

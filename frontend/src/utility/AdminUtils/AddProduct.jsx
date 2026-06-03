@@ -70,113 +70,165 @@ const AddProduct = ({ setAddProduct }) => {
     }
   };
   return (
-    <div className="container mt-5">
-      <h2 className="mb-4 text-center bg-warning shadow py-1 border rounded">Add New Product</h2>
+  <div className="container py-4">
+    <div
+      className="card border-0 shadow-lg rounded-4 mx-auto"
+      style={{ maxWidth: "700px" }}
+    >
+      <div className="card-body p-4">
+        <h2 className="text-center fw-bold text-primary mb-4">
+          <i className="fa-solid fa-plus-circle me-2"></i>
+          Add New Product
+        </h2>
 
-      <form encType="multipart/form-data">
-        <div className="mb-3 text-center">
-          <label htmlFor="productImage" className="form-label">
-            <img
-              src={require("../../static/eCommerce-logo.jpg")}
-              className=" rounded-circle border"
-              id="productImg"
-              style={{
-                width: "200px",
-                height: "200px",
-              }}
+        <form encType="multipart/form-data">
+          {/* Image Upload */}
+          <div className="text-center mb-4">
+            <label
+              htmlFor="productImage"
+              style={{ cursor: "pointer" }}
+            >
+              <img
+                src={require("../../static/eCommerce-logo.jpg")}
+                className="rounded-circle border border-3 shadow"
+                id="productImg"
+                alt="Product"
+                style={{
+                  width: "180px",
+                  height: "180px",
+                  objectFit: "cover",
+                }}
+              />
+            </label>
+
+            <div className="mt-2 text-muted small">
+              Click image to upload product photo
+            </div>
+
+            <input
+              type="file"
+              className="form-control d-none"
+              id="productImage"
+              accept="image/*"
+              onChange={(e) => productImg(e)}
             />
-          </label>
-          <input
-            type="file"
-            className="form-control d-none"
-            id="productImage"
-            accept="image/*"
-            onChange={(e) => productImg(e)}
-          />
-        </div>
+          </div>
 
-        <div className="mb-3">
-          <label htmlFor="productTitle" className="form-label">
-            Product Title
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="productTitle"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
+          {/* Product Title */}
+          <div className="mb-3">
+            <label htmlFor="productTitle" className="form-label fw-semibold">
+              Product Title
+            </label>
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              id="productTitle"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter product title"
+            />
+          </div>
 
-        <div className="mb-3">
-          <label htmlFor="productCategory" className="form-label">
-            Category
-          </label>
-          <select
-            className="form-select"
-            id="productCategory"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+          {/* Category */}
+          <div className="mb-3">
+            <label htmlFor="productCategory" className="form-label fw-semibold">
+              Category
+            </label>
+            <select
+              className="form-select form-select-lg"
+              id="productCategory"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">Select Category</option>
+              <option value="mobile">Mobile</option>
+              <option value="appliances">Appliances</option>
+              <option value="electronics">Electronics</option>
+              <option value="fashion">Fashion</option>
+              <option value="beauty">Beauty</option>
+              <option value="kitchen">Kitchen</option>
+              <option value="furniture">Furniture</option>
+              <option value="grocery">Grocery</option>
+            </select>
+          </div>
+
+          {/* Price & Discount */}
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="productPrice" className="form-label fw-semibold">
+                Price (₹)
+              </label>
+              <input
+                type="number"
+                className="form-control form-control-lg"
+                id="productPrice"
+                min="0"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="Enter price"
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label
+                htmlFor="productDiscount"
+                className="form-label fw-semibold"
+              >
+                Discount (%)
+              </label>
+              <input
+                type="number"
+                className="form-control form-control-lg"
+                id="productDiscount"
+                min="0"
+                max="100"
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
+                placeholder="Enter discount"
+              />
+            </div>
+          </div>
+
+          {/* Error */}
+          {error && (
+            <div className="alert alert-danger py-2">
+              {error}
+            </div>
+          )}
+
+          {/* Upload Progress */}
+          {uploadProgress && (
+            <div className="mb-3">
+              <div className="d-flex justify-content-between mb-1">
+                <span>Uploading...</span>
+                <span>{uploadProgress}%</span>
+              </div>
+
+              <div className="progress">
+                <div
+                  className="progress-bar progress-bar-striped progress-bar-animated"
+                  style={{
+                    width: `${uploadProgress}%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+          )}
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="btn btn-primary btn-lg w-100 rounded-pill fw-semibold"
+            onClick={(e) => AddProductHandler(e)}
           >
-            <option value="" disabled selected>
-              Select Category
-            </option>
-            <option value="mobile">Mobile</option>
-            <option value="appliances">Appliances</option>
-            <option value="electronics">Electronics</option>
-            <option value="fashion">Fashion</option>
-            <option value="beauty">Beauty</option>
-            <option value="kitchen">Kitchen</option>
-            <option value="furniture">Furniture</option>
-            <option value="grocery">Grocery</option>
-          </select>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="productPrice" className="form-label">
-            Price ($)
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="productPrice"
-            min="0"
-            step="1"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="productDiscount" className="form-label">
-            Discount (%)
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="productDiscount"
-            min="0"
-            max="100"
-            step="1"
-            value={discount}
-            onChange={(e) => setDiscount(e.target.value)}
-          />
-        </div>
-        {error && <h6 className=" text-danger">{error}</h6>}
-        {uploadProgress && (
-          <h4 className=" text-center">Uploading {uploadProgress}%</h4>
-        )}
-
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={(e) => AddProductHandler(e)}
-        >
-          Add Product
-        </button>
-      </form>
+            <i className="fa-solid fa-cloud-arrow-up me-2"></i>
+            Add Product
+          </button>
+        </form>
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default AddProduct;

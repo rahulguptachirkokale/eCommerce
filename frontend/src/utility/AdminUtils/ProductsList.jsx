@@ -21,78 +21,124 @@ const ProductsList = ({ updateProductHandler }) => {
   useEffect(() => {
     getData();
   }, [deleteProduct]);
-  return (
-    <div className=" container">
-      <ul className=" bg-body-secondary p-2 my-2 list-unstyled">
-        <div className=" d-flex justify-content-between p-2">
-          <div className=" fw-bold ms-2 ">Image</div>
-          <div className=" fw-bold ms-2 ">Category & Title</div>
-          <div className=" fw-bold  ">Price & Discount</div>
-          <div className=" d-none d-sm-block fw-bold">Actions</div>
-        </div>
+return (
+  <div className="container my-4">
+    <div className="card border-0 shadow-lg rounded-4">
+      <div className="card-header bg-primary text-white fw-bold py-3">
+        <i className="fa-solid fa-boxes-stacked me-2"></i>
+        Products List ({items.length})
+      </div>
+
+      <div className="card-body p-2">
         {items.map((item, idx) => (
-          <>
-            <li className=" border my-2 rounded bg-body-tertiary">
-              <div className=" d-flex justify-content-between align-items-center">
-                <div className=" d-flex gap-2 align-items-center">
-                  <h3 className=" px-2">{idx + 1}</h3>
-                  <img
-                    src={item.imgPath}
-                    alt=""
-                    className=" rounded shadow border"
-                    style={{ height: "100px", width: "100px" }}
-                  />
+          <div
+            key={item._id}
+            className="card mb-3 border-0 shadow-sm rounded-4"
+          >
+            <div className="card-body">
+              <div className="row align-items-center">
+                
+                {/* Product Image */}
+                <div className="col-12 col-md-2 text-center mb-3 mb-md-0">
+                  <div className="position-relative">
+                    <span className="badge bg-dark position-absolute top-0 start-0">
+                      #{idx + 1}
+                    </span>
+
+                    <img
+                      src={item.imgPath}
+                      alt={item.title}
+                      className="img-fluid rounded-4 border shadow-sm"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className=" d-flex flex-column justify-content-center align-items-center ms-2">
-                  <h6 className=" fw-lighter">{item.category.toUpperCase()}</h6>
-                  <h5 className=" fst-italic" title={item.title}>
-                    {JSON.stringify(item.title).slice(1, 25)}...
+
+                {/* Product Details */}
+                <div className="col-12 col-md-5 text-center text-md-start">
+                  <span className="badge bg-primary mb-2">
+                    {item.category.toUpperCase()}
+                  </span>
+
+                  <h5
+                    className="fw-bold mb-1"
+                    title={item.title}
+                  >
+                    {item.title.length > 35
+                      ? item.title.slice(0, 35) + "..."
+                      : item.title}
                   </h5>
+
+                  <small className="text-muted">
+                    Product ID: {item._id.slice(-8)}
+                  </small>
                 </div>
-                <div className=" d-flex flex-column justify-content-between align-items-center me-2">
-                  <div className=" fw-bold">
-                    &#8377;{(item.price - (item.price / 100) * item.discount).toFixed(2)}
+
+                {/* Price */}
+                <div className="col-12 col-md-2 text-center my-3 my-md-0">
+                  <h5 className="fw-bold text-success mb-1">
+                    ₹
+                    {(
+                      item.price -
+                      (item.price / 100) * item.discount
+                    ).toFixed(2)}
+                  </h5>
+
+                  <div className="text-decoration-line-through text-muted">
+                    ₹{item.price}
                   </div>
-                  <div className=" text-decoration-line-through fst-italic">
-                    {item.price}
-                  </div>
-                  <div className=" text-success fw-bold">{item.discount}%</div>
+
+                  <span className="badge bg-success mt-1">
+                    {item.discount}% OFF
+                  </span>
                 </div>
-                <div className=" d-none d-sm-block">
-                  <div className=" d-flex me-2 gap-2">
+
+                {/* Actions */}
+                <div className="col-12 col-md-3">
+                  <div className="d-flex justify-content-center gap-2 flex-wrap">
                     <button
-                      className=" btn btn-primary"
-                      onClick={() => updateProductHandler(item._id)}
+                      className="btn btn-primary rounded-pill px-3"
+                      onClick={() =>
+                        updateProductHandler(item._id)
+                      }
                     >
+                      <i className="fa-solid fa-pen-to-square me-1"></i>
                       Edit
                     </button>
+
                     <button
-                      className=" btn btn-danger"
-                      onClick={(e) => deleteProduct(item._id)}
+                      className="btn btn-danger rounded-pill px-3"
+                      onClick={() =>
+                        deleteProduct(item._id)
+                      }
                     >
+                      <i className="fa-solid fa-trash me-1"></i>
                       Delete
                     </button>
                   </div>
                 </div>
+
               </div>
-              <div className=" d-block d-sm-none">
-                <div className=" d-flex gap-2 my-2 justify-content-evenly">
-                  <button className=" btn btn-primary"
-                  onClick={() => updateProductHandler(item._id)}>Edit</button>
-                  <button
-                    className=" btn btn-danger"
-                    onClick={(e) => deleteProduct(item._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </li>
-          </>
+            </div>
+          </div>
         ))}
-      </ul>
+
+        {items.length === 0 && (
+          <div className="text-center py-5">
+            <i className="fa-solid fa-box-open fs-1 text-secondary"></i>
+            <h4 className="mt-3 text-secondary">
+              No Products Found
+            </h4>
+          </div>
+        )}
+      </div>
     </div>
-  );
+  </div>
+); 
 };
 
 export default ProductsList;

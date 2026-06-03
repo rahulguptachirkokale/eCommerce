@@ -35,72 +35,105 @@ const AdminDashboard = () => {
   useLayoutEffect(() => {
     getData();
   }, [addProduct]);
-  return (
-    <div className=" container">
-      <Link className=" fw-bold btn btn-primary border ms-3 " to="/">
+ return (
+  <div className="container py-4">
+    {/* Header */}
+    <div className="d-flex justify-content-between align-items-center mb-4">
+      <h2 className="fw-bold text-primary">
+        <i className="fa-solid fa-user-shield me-2"></i>
+        Admin Dashboard
+      </h2>
+
+      <Link
+        className="btn btn-outline-primary rounded-pill fw-semibold"
+        to="/"
+      >
+        <i className="fa-solid fa-arrow-left me-2"></i>
         Back
       </Link>
-      <div className="main-content p-4">
-        <div className="row">
-          <div className="col-md-4 mb-3">
-            <div className="card">
-              <div className="card-header">Total Users</div>
-              <div className="card-body">
-                <h5 className="card-title">{totalusers}</h5>
-                <p className="card-text">
-                  Number of registered users in the system.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-3">
-            <div className="card">
-              <div className="card-header">Total Products</div>
-              <div className="card-body">
-                <h5 className="card-title">{totalProducts}</h5>
-                <p className="card-text">Number of Products present in site.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-3">
-            <div className="card">
-              <div className="card-header">Sales Today</div>
-              <div className="card-body">
-                <h5 className="card-title">$1,234</h5>
-                <p className="card-text">Today's sales revenue so far.</p>
-              </div>
-            </div>
+    </div>
+
+    {/* Stats Cards */}
+    <div className="row g-4">
+      <div className="col-md-4">
+        <div className="card border-0 shadow-sm h-100">
+          <div className="card-body text-center">
+            <i className="fa-solid fa-users text-primary fs-1 mb-3"></i>
+            <h6 className="text-muted">Total Users</h6>
+            <h2 className="fw-bold">{totalusers}</h2>
+            <p className="text-secondary small mb-0">
+              Number of registered users.
+            </p>
           </div>
         </div>
       </div>
-      {/* Add Product */}
-      <div className=" d-flex justify-content-evenly">
-        <button
-          className="btn btn-success ms-3"
-          onClick={(e) => {
-            setProductsList(false);
-            setUpdateProduct(false);
-            setAddProduct(!addProduct);
-          }}
-        >
-          Add Product
-        </button>
-        <button
-          className="btn btn-success ms-3"
-          onClick={(e) => {
-            setAddProduct(false);
-            setUpdateProduct(false);
-            setProductsList(!productsList);
-          }}
-        >
-          Products List
-        </button>
+
+      <div className="col-md-4">
+        <div className="card border-0 shadow-sm h-100">
+          <div className="card-body text-center">
+            <i className="fa-solid fa-box-open text-success fs-1 mb-3"></i>
+            <h6 className="text-muted">Total Products</h6>
+            <h2 className="fw-bold">{totalProducts}</h2>
+            <p className="text-secondary small mb-0">
+              Products available on store.
+            </p>
+          </div>
+        </div>
       </div>
-      {/* add products form */}
-      {addProduct && <AddProduct setAddProduct={setAddProduct} />}
-      {productsList && (
-        <ProductsList updateProductHandler={updateProductHandler} />
+
+      <div className="col-md-4">
+        <div className="card border-0 shadow-sm h-100">
+          <div className="card-body text-center">
+            <i className="fa-solid fa-indian-rupee-sign text-warning fs-1 mb-3"></i>
+            <h6 className="text-muted">Sales Today</h6>
+            <h2 className="fw-bold">₹1,234</h2>
+            <p className="text-secondary small mb-0">
+              Today's sales revenue.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Action Buttons */}
+    <div className="d-flex justify-content-center gap-3 my-5 flex-wrap">
+      <button
+        className="btn btn-success rounded-pill px-4 shadow-sm fw-semibold"
+        onClick={(e) => {
+          setProductsList(false);
+          setUpdateProduct(false);
+          setAddProduct(!addProduct);
+        }}
+      >
+        <i className="fa-solid fa-plus me-2"></i>
+        Add Product
+      </button>
+
+      <button
+        className="btn btn-primary rounded-pill px-4 shadow-sm fw-semibold"
+        onClick={(e) => {
+          setAddProduct(false);
+          setUpdateProduct(false);
+          setProductsList(!productsList);
+        }}
+      >
+        <i className="fa-solid fa-list me-2"></i>
+        Products List
+      </button>
+    </div>
+
+    {/* Dynamic Content */}
+    <div className="card border-0 shadow-sm rounded-4 p-3">
+      {addProduct && (
+        <AddProduct setAddProduct={setAddProduct} />
       )}
+
+      {productsList && (
+        <ProductsList
+          updateProductHandler={updateProductHandler}
+        />
+      )}
+
       {updateProduct && (
         <UpdateProduct
           id={id}
@@ -109,7 +142,8 @@ const AdminDashboard = () => {
         />
       )}
     </div>
-  );
+  </div>
+);
 };
 
 export default AdminDashboard;

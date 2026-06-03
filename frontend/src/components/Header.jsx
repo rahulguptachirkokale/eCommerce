@@ -36,143 +36,180 @@ const Header = () => {
   };
 
   return (
-    <header className=" w-100">
-      <div style={{ height: "70px" }}></div>
-      <div className=" bg-body-tertiary shadow position-fixed top-0 w-100 z-3">
-        <div className=" container">
-          <div className="row align-items-center">
-            <div className="col-2 text-start py-1">
-              <Link to="/">
-                <img
-                  src={require("../static/eCommerce-logo.jpg")}
-                  alt="logo"
-                  className=" rounded-circle shadow border"
-                  style={{
-                    height: "50px",
-                    width: "50px",
-                  }}
-                />
-              </Link>
-            </div>
-            <div className=" col-7 col-md-4 text-center">
-              <form className=" d-flex justify-content-center">
-                <input
-                  className="form-control rounded"
-                  type="search"
-                  onMouseOut={() => {
-                    if (searchValue.length < 1) setSearchStatus(false);
-                  }}
-                  placeholder="Search products"
-                  aria-label="Search"
-                  value={searchValue}
-                  onChange={(e) => searchProduct(e)}
-                />
-{/*                 <button
-                  className="btn btn-outline-success rounded-start-0"
-                  type="submit"
-                >
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </button> */}
-              </form>
-            </div>
+ <header className="w-100">
+  <div style={{ height: "75px" }}></div>
 
-            <div className="col-md-4 text-end d-none d-md-block ">
-              {auth ? (
-                <>
-                  <Link
-                    to="/admin"
-                    className="btn btn-outline-dark bg-info bg-opacity-50 fw-bold rounded-end-0 mb-1"
-                  >
-                    Admin
-                  </Link>
-                  <Link
-                    onClick={(e) => logout()}
-                    className="btn btn-danger btn-outline-dark fw-bold rounded-start-0 mt-1"
-                  >
-                    Logout
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/login"
-                    className="btn btn-outline-dark bg-info bg-opacity-50 fw-bold rounded-end-0 mb-1"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="btn btn-danger btn-outline-dark fw-bold rounded-start-0 mt-1"
-                  >
-                    Register
-                  </Link>
-                </>
-              )}
-            </div>
-            <div className=" text-end col-3 col-md-2">
-              <Link to="/cart" className="btn btn-outline-dark fw-bold mt-1">
-                Cart: {data.length}
-              </Link>
-            </div>
-          </div>
+  <div
+    className="bg-white shadow-sm border-bottom position-fixed top-0 w-100 z-3"
+    style={{
+      backdropFilter: "blur(8px)",
+    }}
+  >
+    <div className="container">
+      <div className="row align-items-center py-2">
+        {/* Logo */}
+        <div className="col-2 text-start">
+          <Link to="/">
+            <img
+              src={require("../static/eCommerce-logo.jpg")}
+              alt="logo"
+              className="rounded-circle shadow border border-2 border-primary"
+              style={{
+                height: "55px",
+                width: "55px",
+                objectFit: "cover",
+              }}
+            />
+          </Link>
         </div>
 
-        {/* searched products map  */}
-        {searchStatus && (
-          <div
-            className=" border position-absolute bg-body-tertiary rounded col-12 col-md-8 col-lg-6 mx-auto col-sm-10 ms-sm-5 overflow-auto p-3"
-            style={{ height: "300px" }}
-          >
-            {searchedProducts.length === 0 && (
-              <h1 className=" text-center">No Result Found</h1>
-            )}
-            {/* map products  */}
+        {/* Search */}
+        <div className="col-7 col-md-4 text-center">
+          <form className="d-flex justify-content-center">
+            <input
+              className="form-control rounded-pill shadow-sm"
+              type="search"
+              onMouseOut={() => {
+                if (searchValue.length < 1) setSearchStatus(false);
+              }}
+              placeholder="🔍 Search products..."
+              aria-label="Search"
+              value={searchValue}
+              onChange={(e) => searchProduct(e)}
+            />
+          </form>
+        </div>
 
-            {searchedProducts.map((item, idx) => (
-              <div
-                onClick={() => {
-                  setSearchValue("");
-                  setSearchStatus(false);
-                  navigate("/");
-
-                  setTimeout(() => {
-                    navigate(`/search/${item._id}`);
-                  }, 1);
-                }}
+        {/* Admin/Login */}
+        <div className="col-md-4 text-end d-none d-md-block">
+          {auth ? (
+            <>
+              <Link
+                to="/admin"
+                className="btn btn-info text-dark fw-bold rounded-pill px-3 me-2"
               >
-                <div key={idx} className=" p-1 border rounded m-1 d-flex">
-                  <img
-                    src={item.imgPath}
-                    alt={idx}
-                    className=" rounded shadow border-black"
-                    style={{ width: "100px", height: "100px" }}
-                  />
-                  <div className=" ms-3">
-                    <h5>{item.category}</h5>
-                    <h6>{item.title}</h6>
-                    <div
-                      className=" d-flex gap-1 ps-2"
-                      style={{ marginBottom: "-5px" }}
-                    >
-                      <div className=" fw-bold">
-                        &#8377;
-                        {item.price - (item.price / 100) * item.discount}
-                      </div>
-                      <div className=" text-decoration-line-through fst-italic">
-                        {item.price}
-                      </div>
-                      <div className=" text-success fw-bold">
-                        {item.discount}%
-                      </div>
-                    </div>
-                  </div>
+                <i className="fa-solid fa-user-shield me-1"></i>
+                Admin
+              </Link>
+
+              <Link
+                onClick={(e) => logout()}
+                className="btn btn-danger fw-bold rounded-pill px-3"
+              >
+                <i className="fa-solid fa-right-from-bracket me-1"></i>
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="btn btn-info text-dark fw-bold rounded-pill px-3 me-2"
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/register"
+                className="btn btn-danger fw-bold rounded-pill px-3"
+              >
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+
+        {/* Cart */}
+        <div className="text-end col-3 col-md-2">
+          <Link
+            to="/cart"
+            className="btn btn-outline-dark fw-bold rounded-pill px-3 shadow-sm"
+          >
+            <i className="fa-solid fa-cart-shopping me-1"></i>
+            Cart ({data.length})
+          </Link>
+        </div>
+      </div>
+    </div>
+
+    {/* Search Result */}
+    {searchStatus && (
+      <div
+        className="border bg-white rounded-4 shadow-lg position-absolute col-12 col-md-8 col-lg-6 mx-auto col-sm-10 ms-sm-5 overflow-auto p-3"
+        style={{
+          height: "320px",
+          marginTop: "5px",
+        }}
+      >
+        {searchedProducts.length === 0 && (
+          <h4 className="text-center text-secondary mt-5">
+            No Result Found 😔
+          </h4>
+        )}
+
+        {searchedProducts.map((item, idx) => (
+          <div
+            key={idx}
+            onClick={() => {
+              setSearchValue("");
+              setSearchStatus(false);
+              navigate("/");
+
+              setTimeout(() => {
+                navigate(`/search/${item._id}`);
+              }, 1);
+            }}
+          >
+            <div
+              className="p-2 border rounded-3 m-2 d-flex align-items-center shadow-sm"
+              style={{
+                cursor: "pointer",
+                transition: "0.3s",
+              }}
+            >
+              <img
+                src={item.imgPath}
+                alt={idx}
+                className="rounded shadow-sm border"
+                style={{
+                  width: "90px",
+                  height: "90px",
+                  objectFit: "cover",
+                }}
+              />
+
+              <div className="ms-3 w-100">
+                <span className="badge bg-primary mb-2">
+                  {item.category}
+                </span>
+
+                <h6 className="fw-bold mb-2">
+                  {item.title}
+                </h6>
+
+                <div className="d-flex gap-2 align-items-center">
+                  <span className="fw-bold text-success">
+                    ₹
+                    {item.price -
+                      (item.price / 100) * item.discount}
+                  </span>
+
+                  <span className="text-decoration-line-through text-muted">
+                    ₹{item.price}
+                  </span>
+
+                  <span className="badge bg-danger">
+                    {item.discount}% OFF
+                  </span>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        )}
+        ))}
       </div>
-    </header>
+    )}
+  </div>
+</header>
   );
 };
 

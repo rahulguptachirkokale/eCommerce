@@ -43,206 +43,161 @@ const FilterMenu = ({ FilterHandler }) => {
     // setGrocery(true);
   };
 
-  return (
-    <div className=" ms-1 mt-1 d-inline-block">
-      <div className="position-relative">
-        <h5 onClick={() => setShowFilter(!showFilter)} className=" border px-2 py-1 rounded">Filter <i className="fa-solid fa-filter"></i></h5>
-        {showFilter && (
-          <form className=" bg-body-tertiary p-4 border shadow fw-bold position-absolute">
-            <div className=" d-flex gap-2 ">
-              <div>
-                <h6>Category</h6>
-                <div className="form-group">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category1"
-                      checked={mobile}
-                      onChange={(e) => setMobile(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category1">
-                      Mobile
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category2"
-                      checked={appliances}
-                      onChange={(e) => setAppliances(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category2">
-                      Appliances
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category3"
-                      checked={electronics}
-                      onChange={(e) => setElectronics(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category3">
-                      Electronics
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category4"
-                      checked={fashion}
-                      onChange={(e) => setFashion(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category4">
-                      Fashion
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category5"
-                      checked={beauty}
-                      onChange={(e) => setBeauty(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category5">
-                      Beauty
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category6"
-                      checked={kitchen}
-                      onChange={(e) => setKitchen(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category6">
-                      Kitchen
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category7"
-                      checked={furniture}
-                      onChange={(e) => setFurniture(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category7">
-                      Furniture
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input categories"
-                      type="checkbox"
-                      id="category8"
-                      checked={grocery}
-                      onChange={(e) => setGrocery(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="category8">
-                      Grocery
-                    </label>
-                  </div>
-                </div>
+return (
+  <div className="ms-2 mt-2 d-inline-block">
+    <div className="position-relative">
+      <button
+        onClick={() => setShowFilter(!showFilter)}
+        className="btn btn-light border shadow-sm fw-semibold rounded-pill px-3"
+      >
+        <i className="fa-solid fa-filter me-2 text-primary"></i>
+        Filters
+      </button>
+
+      {showFilter && (
+        <form
+          className="bg-white p-4 border rounded-4 shadow-lg position-absolute mt-2"
+          style={{
+            minWidth: "350px",
+            zIndex: 1000,
+          }}
+        >
+          <div className="d-flex gap-4">
+            {/* Categories */}
+            <div>
+              <h6 className="fw-bold text-primary mb-3">
+                Categories
+              </h6>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={mobile}
+                  onChange={(e) => setMobile(e.target.checked)}
+                />
+                <label className="form-check-label">Mobile</label>
               </div>
-              <div>
-                <h6>Prices</h6>
-                <div className="form-group">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(1000000)}
-                    />
-                    All
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(300)}
-                    />
-                    300
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(1000)}
-                    />
-                    1,000
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(2000)}
-                    />
-                    2,000
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(5000)}
-                    />
-                    5,000
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(10000)}
-                    />
-                    10,000
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(15000)}
-                    />
-                    15,000
-                  </div>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      name="priceFilter"
-                      type="radio"
-                      onChange={(e) => setPriceFilter(20000)}
-                    />
-                    20,000
-                  </div>
-                </div>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={appliances}
+                  onChange={(e) => setAppliances(e.target.checked)}
+                />
+                <label className="form-check-label">Appliances</label>
+              </div>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={electronics}
+                  onChange={(e) => setElectronics(e.target.checked)}
+                />
+                <label className="form-check-label">Electronics</label>
+              </div>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={fashion}
+                  onChange={(e) => setFashion(e.target.checked)}
+                />
+                <label className="form-check-label">Fashion</label>
+              </div>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={beauty}
+                  onChange={(e) => setBeauty(e.target.checked)}
+                />
+                <label className="form-check-label">Beauty</label>
+              </div>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={kitchen}
+                  onChange={(e) => setKitchen(e.target.checked)}
+                />
+                <label className="form-check-label">Kitchen</label>
+              </div>
+
+              <div className="form-check mb-1">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={furniture}
+                  onChange={(e) => setFurniture(e.target.checked)}
+                />
+                <label className="form-check-label">Furniture</label>
+              </div>
+
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={grocery}
+                  onChange={(e) => setGrocery(e.target.checked)}
+                />
+                <label className="form-check-label">Grocery</label>
               </div>
             </div>
-            <button
-              type="submit"
-              onClick={(e) => applyhandler(e)}
-              className="btn btn-primary my-2"
-            >
-              Apply Filter
-            </button>
-          </form>
-        )}
-      </div>
 
-      {/* price */}
+            {/* Price */}
+            <div>
+              <h6 className="fw-bold text-success mb-3">
+                Price Range
+              </h6>
+
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  name="priceFilter"
+                  type="radio"
+                  defaultChecked
+                  onChange={() => setPriceFilter(1000000)}
+                />
+                <label className="form-check-label">All</label>
+              </div>
+
+              {[300, 1000, 2000, 5000, 10000, 15000, 20000].map(
+                (price) => (
+                  <div className="form-check" key={price}>
+                    <input
+                      className="form-check-input"
+                      name="priceFilter"
+                      type="radio"
+                      onChange={() => setPriceFilter(price)}
+                    />
+                    <label className="form-check-label">
+                      ₹{price.toLocaleString()}
+                    </label>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            onClick={(e) => applyhandler(e)}
+            className="btn btn-primary w-100 mt-3 fw-semibold rounded-pill"
+          >
+            <i className="fa-solid fa-check me-2"></i>
+            Apply Filter
+          </button>
+        </form>
+      )}
     </div>
-  );
+  </div>
+);
 };
 
 export default FilterMenu;

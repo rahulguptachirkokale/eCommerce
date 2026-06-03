@@ -31,132 +31,181 @@ const Login = () => {
         });
     }
   };
-  return (
-    <div className=" ms-md-4 ps-md-5">
-      <section
-        className="h-100 gradient-form"
-        style={{ backgroundColor: "#eee" }}
-      >
-        <div className="container py-3 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-xl-10">
-              <div className="card rounded-3 text-black">
-                <div className="row g-0">
-                  <div className="col-lg-6">
-                    <div className="card-body p-md-5 bg-info bg-opacity-10">
-                      <div className="text-center">
-                        <h4 className="mt-1 mb-3 pb-1">Login Here</h4>
-                      </div>
+ return (
+  <div
+    className="min-vh-100 d-flex align-items-center justify-content-center py-5"
+    style={{
+      background:
+        "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #3b82f6 100%)",
+    }}
+  >
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-lg-10">
+          <div className="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div className="row g-0">
 
-                      <form>
-                        <p>Please login to your account</p>
+              {/* Login Form */}
+              <div className="col-lg-6">
+                <div className="card-body p-5 bg-white h-100">
 
-                        <div data-mdb-input-init className="form-outline mb-2">
-                          <input
-                            type="text"
-                            id="form2Example11"
-                            className="form-control shadow border-2"
-                            placeholder="Mobile Number"
-                            value={mobile}
-                            onChange={(e) => setMobile(e.target.value)}
-                          />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example11"
-                          >
-                            Mobile Number
-                          </label>
-                        </div>
+                  <div className="text-center mb-4">
+                    <img
+                      src={require("../static/eCommerce-logo.jpg")}
+                      alt="logo"
+                      className="rounded-circle shadow border mb-3"
+                      style={{
+                        width: "90px",
+                        height: "90px",
+                        objectFit: "cover",
+                      }}
+                    />
 
-                        <div
-                          data-mdb-input-init
-                          className="form-outline mb-1 position-relative"
-                        >
-                          {passView ? (
-                            <input
-                              type="text"
-                              placeholder="Password"
-                              id="form2Example22"
-                              className="form-control shadow border-2"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                            />
-                          ) : (
-                            <input
-                              type="password"
-                              placeholder="Password"
-                              id="form2Example22"
-                              className="form-control shadow border-2"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                            />
-                          )}
-
-                          <p
-                            className=" position-absolute pointer "
-                            style={{ left: "90%", bottom: "35%" }}
-                            onClick={() => setPassView(!passView)}
-                          >
-                            {passView ? (
-                              <i className="fa-regular fa-eye"></i>
-                            ) : (
-                              <i className="fa-regular fa-eye-slash"></i>
-                            )}
-                          </p>
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example22"
-                          >
-                            Password
-                          </label>
-                        </div>
-                        <div className=" text-danger mb-2 ms-3">{error}</div>
-
-                        <div className="text-center mb-3 pb-1">
-                          <button
-                            data-mdb-button-init
-                            data-mdb-ripple-init
-                            className="btn btn-success  btn-lg fw-bold shadow d-flex align-items-center gap-1"
-                            type="button"
-                            onClick={(e) => loginHandler(e)}
-                          >
-                            Log in
-                          </button>
-                        </div>
-
-                        <div className="d-flex align-items-center justify-content-center pb-4">
-                          <p className="mb-0 me-2">Don't have an account?</p>
-                          <Link
-                            to="/register"
-                            data-mdb-button-init
-                            data-mdb-ripple-init
-                            className="btn btn-outline-danger btn-sm fw-bold"
-                          >
-                            Create new
-                          </Link>
-                        </div>
-                      </form>
-                    </div>
+                    <h2 className="fw-bold">Welcome Back 👋</h2>
+                    <p className="text-muted">
+                      Login to continue shopping
+                    </p>
                   </div>
-                  <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                    <div className="text-whit px-3 py-4 p-md-5 mx-md-4 mb-4">
-                      <h4 className="mb-4">About this Project</h4>
-                      <p className="small mb-0">
-                        During my studies, I’ve developed a strong foundation in
-                        MERN-STACK, and I’ve worked on various projects that
-                        have allowed me to gain hands-on experience in CRUD
-                        Operation.
-                      </p>
+
+                  <form>
+                    {/* Mobile */}
+                    <div className="mb-3">
+                      <label className="form-label fw-semibold">
+                        Mobile Number
+                      </label>
+
+                      <div className="input-group">
+                        <span className="input-group-text">
+                          <i className="fa-solid fa-phone"></i>
+                        </span>
+
+                        <input
+                          type="text"
+                          className="form-control form-control-lg"
+                          placeholder="Enter mobile number"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Password */}
+                    <div className="mb-3">
+                      <label className="form-label fw-semibold">
+                        Password
+                      </label>
+
+                      <div className="input-group">
+                        <span className="input-group-text">
+                          <i className="fa-solid fa-lock"></i>
+                        </span>
+
+                        <input
+                          type={passView ? "text" : "password"}
+                          className="form-control form-control-lg"
+                          placeholder="Enter password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={() => setPassView(!passView)}
+                        >
+                          <i
+                            className={
+                              passView
+                                ? "fa-regular fa-eye"
+                                : "fa-regular fa-eye-slash"
+                            }
+                          ></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Error */}
+                    {error && (
+                      <div className="alert alert-danger py-2">
+                        <i className="fa-solid fa-circle-exclamation me-2"></i>
+                        {error}
+                      </div>
+                    )}
+
+                    {/* Login Button */}
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-lg w-100 fw-bold rounded-3 shadow"
+                      onClick={(e) => loginHandler(e)}
+                    >
+                      <i className="fa-solid fa-right-to-bracket me-2"></i>
+                      Login
+                    </button>
+
+                    <div className="text-center mt-4">
+                      <span className="text-muted">
+                        Don't have an account?
+                      </span>
+
+                      <Link
+                        to="/register"
+                        className="text-primary fw-bold ms-2 text-decoration-none"
+                      >
+                        Register Now
+                      </Link>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              {/* Right Side */}
+              <div
+                className="col-lg-6 d-none d-lg-flex align-items-center"
+                style={{
+                  background:
+                    "linear-gradient(135deg,#2563eb,#7c3aed)",
+                }}
+              >
+                <div className="text-white p-5">
+                  <h2 className="fw-bold mb-4">
+                    MyShop E-Commerce
+                  </h2>
+
+                  <p className="fs-5">
+                    Discover amazing products, best offers and
+                    seamless shopping experience.
+                  </p>
+
+                  <div className="mt-4">
+                    <div className="mb-3">
+                      <i className="fa-solid fa-circle-check me-2"></i>
+                      Secure Shopping
+                    </div>
+
+                    <div className="mb-3">
+                      <i className="fa-solid fa-circle-check me-2"></i>
+                      Fast Delivery
+                    </div>
+
+                    <div>
+                      <i className="fa-solid fa-circle-check me-2"></i>
+                      Premium Products
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
+
+          <div className="text-center text-white mt-3">
+            © {new Date().getFullYear()} MyShop. All Rights Reserved.
+          </div>
         </div>
-      </section>
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Login;
